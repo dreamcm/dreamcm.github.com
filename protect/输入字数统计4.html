@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#txta{ display:block; width:500px;height:300px;}
+#s1{color:red;}
+</style>
+<script>
+	window.onload = function(){
+		var oTxta = document.getElementById('txta');
+		var oS = document.getElementById('s1');
+		setInterval(function(){
+			oS.innerHTML = oTxta.value.length;	
+		},30);
+	};
+</script>
+</head>
+<body>
+	已经输入了<span id="s1">0</span>个字
+    <textarea id="txta"></textarea>
+</body>
+</html>

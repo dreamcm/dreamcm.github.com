@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+	#process{width:500px;height:16px; background:#ccc; position:relative; margin:50px auto;}
+	#bar{width:30%;height:16px; position:absolute; left:0; background:green;}
+</style>
+<script>
+	window.onload = function(){
+		var oBar = document.getElementById('bar');
+		var count = 0;
+		for(var i = 0;i<77;i++){
+			var oImg = new Image();
+			oImg.onload = function(){
+				count++;
+				var scale = Math.round((count/77)*100);
+				oBar.style.width = scale+'%';
+			};
+			oImg.src = 'http://www.zhinengshe.com/works/3525/img/'+i+'.jpg';
+		}
+	};
+</script>
+</head>
+<body>
+	<div id="process">
+    	<div id="bar"></div>
+    </div>
+</body>
+</html>

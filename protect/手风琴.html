@@ -1,0 +1,55 @@
+ <!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+* {margin:0; padding:0; list-style:none;}
+
+#ul1 {width:580px; height:300px; margin:10px auto; overflow:hidden; position:relative;}
+#ul1 li {width:500px; height:300px; position:absolute; top:0;}
+#ul1 li span {width:18px; height:298px; background:yellow; position:absolute; left:0; top:0; border:1px solid black; text-align:center; line-height:20px;}
+
+#ul1 li.a1 {left:0; background:#06C; left:0;}
+#ul1 li.a2 {left:0; background:#60C; left:500px;}
+#ul1 li.a3 {left:0; background:#0C6; left:520px;}
+#ul1 li.a4 {left:0; background:#C60; left:540px;}
+#ul1 li.a5 {left:0; background:#C06; left:560px;}
+</style>
+<script src="move8.js"></script>
+<script>
+	window.onload = function(){
+		var oUl = document.getElementById('ul1');
+		var aLi = oUl.children;
+		for(var i = 0;i<aLi.length;i++){
+			(function(index){
+				aLi[i].onmouseover = function(){
+					for(var i = 0;i<aLi.length;i++){
+						//左侧
+						if(i<=index){
+							move(aLi[i],{left: i*20},{easing:'ease-out'});
+						}else{
+							//右侧
+							move(aLi[i],{left:500+(i-1)*20},{easing:'ease-out'});
+						}
+					}
+				};
+			})(i);
+		}
+	};
+	
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li class="a1"><span>第0块</span></li>
+	<li class="a2"><span>第1块</span></li>
+	<li class="a3"><span>第2块</span></li>
+	<li class="a4"><span>第3块</span></li>
+	<li class="a5"><span>第4块</span></li>
+</ul>
+</body>
+</html>

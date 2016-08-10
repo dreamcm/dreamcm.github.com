@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" href="jquery.fullPage.css">
+<script src="jquery-1.8.3.min.js" ></script>
+<script src="jquery.fullPage.min.js"></script>
+<style>
+</style>
+<script>
+	$(document).ready(function() {
+        $('#fullpage').fullpage({
+			'verticalCentered':false,	
+			'css3':true,
+			'sectionsColor':['#328390','#321350','#352190'],
+			anchors:['page1','page2','page3'],
+			'navigation':true,
+			'navigationPosition':'right',
+			'navigationTooltips':['home','con','call']
+		});
+    });
+</script>
+</head>
+
+<body>
+	<div id="fullpage">
+    	<div class="section">第一屏</div>
+    	<div class="section">第二屏</div>
+    	<div class="section">
+        	<div class="slide">第三屏的1</div>
+        	<div class="slide">第三屏的2</div>
+        	<div class="slide">第三屏的3</div>
+        </div>
+    </div>
+
+</body>
+</html>

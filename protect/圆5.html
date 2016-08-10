@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+	#div1{width:300px;height:300px; border:1px solid black; border-radius:50%; position:absolute; left:300px;top:200px;}
+	#div1 span{width:50px;height:50px; background:red; position:absolute;left:50%;margin-left:-25px; top:0; margin-top:-25px;border-radius:50%;} 
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	var oS = oDiv.children[0];	
+	var R = oDiv.offsetWidth/2;
+	var bOk = true;
+	var N = 10;
+	var timer = null;
+	//角度转弧度
+	function d2a(n){
+		return n*Math.PI/180;
+	}
+	//弧度转角度
+	function a2d(n){
+		//n*180/PI
+		return n*180/Math.PI;
+	}
+	//创建了10个小球
+	for(var i = 0;i<N;i++){
+		var oS = document.createElement('span');
+		oDiv.appendChild(oS);
+	}
+	var aSpan = oDiv.getElementsByTagName('span');
+	oDiv.onclick = function(){
+		if(bOk){
+			for(var i = 0;i<aSpan.length;i++){
+				move(aSpan[i],i*360/N);	
+			}	
+		}else{
+			for(var i = 0;i<aSpan.length;i++){
+				move(aSpan[i],0);	
+			}	
+		}
+		bOk = !bOk;
+	};
+	
+	function move(obj,target){
+		var start = obj.a||0;
+		var dis = target - start;
+		var count = Math.round(1000/16);
+		var n = 0;
+		clearInterval(obj.timer);
+		obj.timer = setInterval(function(){
+			n++;
+			var b = 1 -n/count;
+			var cur = start+dis*(1-Math.pow(b,3));
+			var x = R+R*Math.sin(d2a(cur));
+			var y = R-R*Math.cos(d2a(cur));
+			obj.a = cur;
+			obj.style.left = x+'px';
+			obj.style.top = y+'px';
+			if(n == count){
+				clearInterval(obj.timer);
+			}
+		},16);
+	}
+	
+};
+</script>
+</head>
+<body>
+	<div id="div1">
+    	
+    </div>
+</body>
+</html>

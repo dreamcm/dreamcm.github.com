@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+	*{margin:0;padding:0;}
+	.div1{width:100px;height:100px; background:red; position:absolute; left:0;top:0;}
+	.box{opacity:0.6;position:absolute; background:blue;}
+</style>
+<script>
+	window.onload = function(){
+		var oDiv = document.getElementById('div1');	
+		oDiv.onmousedown = function(ev){
+			var oEvent = ev||event;
+			var disX = oEvent.clientX - oDiv.offsetLeft;
+			var disY = oEvent.clientY - oDiv.offsetTop;
+		
+			//clone一个新div
+			var oNewDiv = oDiv.cloneNode(true);
+			oNewDiv.removeAttribute('id');
+			oNewDiv.style.opacity = 0.6;
+			oNewDiv.style.filter = 'alpha(opacity:60)';
+			//插入
+			oDiv.parentNode.appendChild(oNewDiv);
+			document.onmousemove = function(ev){
+				var oEvent = ev||event;
+				oNewDiv.style.left = oEvent.clientX - disX +'px';
+				oNewDiv.style.top = oEvent.clientY - disY +'px';
+			};
+			document.onmouseup = function(){
+				//跟过来 删除虚线框
+				oDiv.style.left = oNewDiv.offsetLeft+'px';
+				oDiv.style.top = oNewDiv.offsetTop+'px';
+				oDiv.parentNode.removeChild(oNewDiv);
+				document.onmousemove = null;
+				document.onmouseup = null;
+				oDiv.releaseCapture&&oDiv.releaseCapture();	
+			};
+			oDiv.setCapture&&oDiv.setCapture();
+			return false;
+		};
+	};
+</script>
+</head>
+<body>
+	<div id="div1" class="div1">
+    	你从我脸上看到了什么？帅
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

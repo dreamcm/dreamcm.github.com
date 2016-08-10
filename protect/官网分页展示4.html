@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+	*{margin:0;padding:0; list-style:none;}
+	#ul1{width:336px;margin:100px auto;}
+	#ul1 li{
+		width:100px;height:100px; background:#ccc;border:1px solid #000;margin:5px; font-size:40px; line-height:100px; text-align:center; float:left;
+	}
+</style>
+<script src="move.js"></script>
+<script>
+	window.onload = function(){
+		var oBtn = document.getElementById('btn');
+		var oUl = document.getElementById('ul1');
+		var aLi = oUl.children;	
+		//float ->absolute
+		var aPos = [];
+		for(var i = 0;i<aLi.length;i++){
+			aPos.push({left:aLi[i].offsetLeft,top:aLi[i].offsetTop});
+		}
+		
+		//不能偷懒 必须循环两次
+		for(var i = 0;i<aLi.length;i++){
+			aLi[i].style.position = 'absolute';
+			aLi[i].style.left = aPos[i].left+'px';
+			aLi[i].style.top = aPos[i].top+'px';
+			aLi[i].style.margin = 0;
+		}
+		var bOk = false;
+		oBtn.onclick = function(){
+			if(bOk){return;}
+			bOk = true;
+			for(var i = 0;i<aLi.length;i++){
+				(function(index){
+					setTimeout(function(){
+						move(aLi[index],{left:0,top:0,width:0,height:0,opacity:0},{complete:function(){
+							//判断是不是最后一个收完了
+							if(index == aLi.length-1){
+								//你放
+								for(var i = aLi.length-1;i>=0;i--){
+									(function(index){
+										setTimeout(function(){
+											move(aLi[index],{left:aPos[index].left,top:aPos[index].top,width:100,height:100,opacity:1},{
+				complete:function(){
+					if(index == 0){
+						bOk =false;
+					}	
+				}								
+												
+			});
+											
+										},(aLi.length-1-i)*100);
+										
+									})(i);
+									
+								}
+								
+							}	
+						}});
+					},i*100);
+				})(i);
+			}
+		};
+	};
+</script>
+</head>
+<body>
+	<input type="button" value="撩HR神器" id="btn">
+	<ul id="ul1">
+    	<li>1</li>
+    	<li>2</li>
+    	<li>3</li>
+    	<li>4</li>
+    	<li>5</li>
+    	<li>6</li>
+    	<li>7</li>
+    	<li>8</li>
+    	<li>9</li>
+    </ul>
+</body>
+</html>
+
+
+
+
+

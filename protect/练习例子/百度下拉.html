@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jsonp.js" ></script>
+<script>
+	window.onload=function(){
+		var oTxt=document.getElementById('txt');
+		var url='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su';
+		var oUl=document.getElementById('ul1');
+		oTxt.onkeyup=function(){
+			jsonp({
+				url:url,
+				data:{
+					wd:oTxt.value,
+					cbName:'cb'	
+				},
+				timeout:300,
+				success:function(json){
+					var arr=json.s;
+					oUl.innerHTML=	'';
+					for(var i=0;i<arr.length;i++){
+						var oLi=document.createElement('li');
+						oLi.innerHTML=arr[i];
+						oUl.appendChild(oLi);
+					}
+				},
+				error:function(){
+					alert('挂了');	
+				}
+			});
+			
+		};	
+	};
+</script>
+</head>
+
+<body>
+	<input type="text" id="txt">
+    <ul id="ul1">
+    </ul>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+</style>
+<script>
+	var arr= [12,5,8,9,13,78,-100];
+	function findMax(start,arr){
+		var iMax = arr[start];
+		var iMaxIndex = start;
+		for(var i = start+1;i<arr.length;i++){
+			if(arr[i]>iMax){
+				iMax = arr[i];
+				iMaxIndex = i;
+			}	
+		}	
+		return iMaxIndex;
+	}
+	for(var i = 0;i<arr.length;i++){
+		var iMaxIndex = findMax(i,arr);
+		var car= 0;
+		car = arr[i];
+		arr[i] = arr[iMaxIndex];
+		arr[iMaxIndex] = car;
+	}
+	document.write(arr);
+</script>
+</head>
+<body>
+</body>
+</html>

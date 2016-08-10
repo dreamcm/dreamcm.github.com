@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+	*{margin:0;padding:0;}
+	#scroll{width:800px;height:20px; background:#ccc; position:relative;;margin:10px auto;}
+	#bar{width:100px;height:20px; background:red; position:absolute;left:0; top:0;}
+	#div1{width:500px; height:500px; border:1px solid #000; overflow:hidden; position:relative;margin:10px auto;}
+	#div2{ position:absolute; left:0; top:0;}
+</style>
+<script src="addWheel.js"></script>
+<script>
+	window.onload = function(){
+		var oS = document.getElementById('scroll');	
+		var oBar = document.getElementById('bar');	
+		var oDiv1 = document.getElementById('div1');	
+		var oDiv2 = document.getElementById('div2');	
+		var oBox = document.getElementById('box');	
+		function setPos(l){
+					if(l<0){
+						l = 0;
+					}else if(l>oS.offsetWidth - oBar.offsetWidth){
+						l = oS.offsetWidth - oBar.offsetWidth;
+					}
+					oBar.style.left = l +'px';
+					//document.title = l/(oS.offsetWidth - oBar.offsetWidth);
+					var scale = l/(oS.offsetWidth - oBar.offsetWidth);
+					oDiv2.style.top = - scale*(oDiv2.offsetHeight- oDiv1.offsetHeight)+'px';
+				}
+		oBar.onmousedown = function(ev){
+			var oEvent = ev||event;
+			var disX = oEvent.clientX - oBar.offsetLeft;
+			document.onmousemove = function(ev){
+				var oEvent = ev||event;
+				var l = oEvent.clientX - disX;
+				setPos(l);
+			};
+			document.onmouseup = function(){
+				document.onmouseup = null;
+				document.onmousemove = null;
+				oBar.releaseCapture&&oBar.releaseCapture();
+			};
+			oBar.setCapture&&oBar.setCapture();
+			return false;
+		};
+		addWheel(oBox,function(down){
+			var l = oBar.offsetLeft;
+			if(down){
+				l+=10;
+			}else{
+				l-=10;
+			}
+			setPos(l);
+		});
+	};
+</script>
+</head>
+<body>
+	<div id="box">
+        <div id="scroll">
+            <div id="bar"></div>
+        </div>
+        <div id="div1">
+            <div id="div2">
+                用正确的标签做正确的事情。
+        html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析;
+        及时在没有样式CCS情况下也以一种文档格式显示，并且是容易阅读的;
+        搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO;
+        使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。
+    
+    9 HTML5的离线储存怎么使用，工作原理能不能解释一下？
+        在用户没有与因特网连接时，可以正常访问站点或应用，在用户与因特网连接时，更新用户机器上的缓存文件。
+        原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，
+        这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。
+        如何使用：
+        1、页面头部像下面一样加入一个manifest的属性；
+        2、在cache.manifest文件的编写离线存储的资源；
+            CACHE MANIFEST
+            #v0.11
+            CACHE:
+            js/app.js
+            css/style.css
+            NETWORK:
+            resourse/logo.png
+            FALLBACK:
+            / /offline.html
+        3、在离线状态时，操作window.applicationCache进行需求实现。
+        详细的使用请参考：有趣的HTML5：离线存储
+    
+    10 浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？
+        在线的情况下，浏览器发现html头部有manifest属性，它会请求manifest文件，如果是第一次访问app，
+        那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，
+        那么浏览器就会使用离线的资源加载页面，
+        然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，
+        那么就会重新下载文件中的资源并进行离线存储。
+        离线的情况下，浏览器就直接使用离线存储的资源。
+        详细的使用请参考：有趣的HTML5：离线存储
+    
+    11 请描述一下 cookies，sessionStorage 和 localStorage 的区别？
+        cookie是网站为了标示用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。
+        cookie数据始终在同源的http请求中携带（即使不需要），记会在浏览器和服务器间来回传递。
+        sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。
+        存储大小：
+            cookie数据大小不能超过4k。
+            sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。
+        有期时间：
+            localStorage    存储持久数据，浏览器关闭后数据不丢失除非主动删除数据；
+            sessionStorage  数据在当前浏览器窗口关闭后自动删除。
+            cookie          设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭
+    
+    12 iframe有那些缺点？
+        *iframe会阻塞主页面的Onload事件；
+        *搜索引擎的检索程序无法解读这种页面，不利于SEO;
+        *iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。
+        使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript
+        动态给iframe添加src属性值，这样可以绕开以上两个问题。
+    
+    13 Label的作用是什么？是怎么用的？
+        label标签来定义表单控制间的关系,当用户选择该标签时，浏览器会自动将焦点转到和标签相关的表单控件上。
+        <label for="Name">Number:</label>
+        <input type=“text“name="Name" id="Name"/>
+        <label>Date:<input type="text" name="B"/></label>
+    
+    14 HTML5的form如何关闭自动完成功能？
+        给不想要提示的 form 或下某个input 设置为 autocomplete=off。
+    
+    15 如何实现浏览器内多个标签页之间的通信? (阿里)
+        调用localstorge、cookies等本地存储方式
+    
+    16 webSocket如何兼容低浏览器？(阿里)
+        Adobe Flash Socket 、
+        ActiveX HTMLFile (IE) 、
+        基于 multipart 编码发送 XHR 、
+        基于长轮询的 XHR
+    
+    17 页面可见性（Page Visibility）API 可以有哪些用途？
+        在页面被切换到其他后台进程的时候，自动暂停音乐或视频的播放；
+        
+    
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
