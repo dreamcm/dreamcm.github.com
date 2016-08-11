@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+	body{ background:black; color:red; font-size:34px;}
+	span{ opacity:0;}
+</style>
+<script src="move8.js"></script>
+<script>
+	window.onload = function(){
+		var str = '生化危机游戏是一款火爆的角色扮演类游戏。女主角吉尔于洋馆事件后，一直调查有关安布雷拉公司的地下业务。当时美国联邦政府决定以核弹彻底毁灭浣熊市，吉尔于是展开她的逃亡之旅。在逃亡期间，她受到安布雷拉公司欧洲分部派来浣熊市的生物武器追击者（Nemesis）追杀，并且遇上了隶属于Umbrella Biohazard Countermeasure Service（UBCS）的男主角卡洛斯，以及UBCS成员Mikhail Victor、Nicholai Ginovaef。吉尔及卡洛斯逃至市政府时，吉尔不幸受到追击者攻击而感染了T-病毒，于是卡洛斯便到安布雷拉公司旗下的附属医院寻找解药。 本作的后半部份发生于《生化危机2》之后，吉尔已经康复过来，于是继续出发逃命。此时美国联邦政府已经准备发射导弹实施“灭菌作战计划”，吉尔需要在15分钟内离开浣熊市。最后，在垃圾处理场成功击倒追击者，并且与卡洛斯乘坐直升机离开（直升机驾驶员很可能是巴利';
+
+		for(var i = 0;i<str.length;i++){
+			var oSpan = document.createElement('span');
+			oSpan.innerHTML = str.charAt(i);
+			document.body.appendChild(oSpan);
+		}
+		var aSpan = document.body.children;
+		var i = 0;
+		var timer = null;
+		clearInterval(timer);
+		timer = setInterval(function(){
+			move(aSpan[i],{opacity:1});
+			i++;
+			if(i == aSpan.length){
+				clearInterval(timer);	
+			}
+		},200);
+	};
+</script>
+</head>
+
+<body>
+</body>
+</html>

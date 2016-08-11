@@ -1,67 +1,334 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" href="javascripts/jquery.fullPage.css">
+<script src="javascripts/jquery-1.8.3.min.js" ></script>
+<script src="javascripts/jquery.fullPage.min.js"></script>
+<script src="javascripts/move.js"></script>
+<script src="javascripts/through.js"></script>
+<link rel="stylesheet" href="stylesheets/base.css" />
+<style>
+body,html{height:100%;overflow:hidden;}
+/*banner*/
+.banner_bg{height:100%;min-width:960px;background:url(images/pin_01.jpg) center 0 no-repeat; overflow:hidden;background-size:cover;}
+.banner{background:#000;position:relative;-webkit-transform-style:preserve-3d;-webkit-transform:perspective(800px) translateY(60px) rotateY(0deg) scale(5,5);}
+.banner>div{width:100%;height:550px;background:#000;position:absolute;top:0;left:0;overflow:hidden;}
+.banner .begin{-webkit-transform:translateZ(3px);background:#000;}
+.banner .begin_left{ background:#0CF;width:3px;height:550px;-webkit-transform: translate(calc(50% + 960px),0) rotateY(90deg);opacity:0.7;}
+.banner .begin_right{ background:#0CF;  width:3px;height:550px;-webkit-transform: translate(calc(-50% - 0px),0) rotateY(-90deg);opacity:0.7;}
+.banner .begin_top{ background:#0CF;  width:100%;height:3px;-webkit-transform: translate(0,-50%) rotateX(-90deg);opacity:0.7;}
+.banner .begin_bottom{ background:#0CF; width:100%;height:3px; -webkit-transform: translate(0,50%) rotateX(90deg);opacity:0.7;}
+.begin_con{width:500px;height:200px;background:url(images/xindiantu.png) no-repeat;background-size:50%;position:absolute;top:100px;left:300px;}
+.begin_mask{width:500px;height:200px;background:#000;position:absolute;top:100px;left:150px;}
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Dreamcm.GitHub.com : this is my web page">
+.banner_bg .con1{width:550px;height:550px;position:absolute;background:url(images/ziliao2.png) no-repeat;-webkit-transform-style:preserve-3d;-webkit-transform-origin:left;opacity:0;-webkit-transform:perspective(800px) translateX(1000px) translateY(300px) rotateY(-10deg) rotateX(70deg) translateZ(1px) scale(0.6,0.6);background-size:100%;}
+.banner_bg .con2{width:550px;height:550px; position:absolute;background:url(images/ziliao2.png) no-repeat;-webkit-transform-style:preserve-3d;-webkit-transform-origin:left;opacity:0;-webkit-transform:perspective(800px) translateX(1000px) translateY(300px) rotateY(-20deg) rotateX(70deg) translateZ(1px) scale(0.5,0.5);background-size:100%;}
+.banner_bg .con1:hover,.banner_bg .con2:hover{background:url(images/ziliao3.png) no-repeat;background-size:100%;}
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+.banner_bg .banner .begin_back{-webkit-transform:translateZ(-1px);background:-webkit-linear-gradient(#000,#06C);-webkit-transform:scale(-1,1);opacity:0;width:calc(100% - 200px);height:350px;background-size:100%;border:1px solid #849EAC;padding:100px;}
 
-    <title>Dreamcm.GitHub.com</title>
-  </head>
+.banner .begin_back b{ opacity:0;color:#6FF;font:30px 微软雅黑;line-height:50px;margin-left:3px; background:-webkit-linear-gradient(30deg,rgb(0,255,255),rgb(128,255,255));-webkit-background-clip:text; color:rgba(0,0,0,0);text-shadow: 1px 1px 3px #FFF;}
+/*con_bg*/
 
-  <body>
+.re_btn{width:139px;height:65px;background:url(images/return.png) no-repeat;background-size:100%;position:absolute;-webkit-transform:translateX(-150px) translateY(100px);}
+.re_btn:hover{background-image:url(images/return2.png);}
+.con h3{position:absolute;top:0;left:0;margin-left:100px;margin-top:60px;color:#0FF;}
+.con img{position:absolute;top:0;left:0;width:78px;height:80px;display:block;margin-left:85px;margin-top:105px;background-size:cover;-webkit-transition:1s all ease;}
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/dreamcm">View on GitHub</a>
+.con a{position:absolute;bottom:0;left:0;margin-left:240px;margin-bottom:115px;font-weight:bold;color:#fff;font:28px 微软雅黑;opacity:0.8;}
 
-          <h1 id="project_title">Dreamcm.GitHub.com</h1>
-          <h2 id="project_tagline">this is my web page</h2>
+.con_bg{background:url(images/pin5.jpg) center 0 no-repeat;height:100%;min-width:960px; overflow:hidden;background-size:cover;}
 
-        </header>
+.work{width:960px;height:100%;margin:20px auto;position:relative;background:url(images/user.png) no-repeat;background-size:100%;}
+.con_bg .work input{width:420px;height:66px;background:url(images/bottom.png) no-repeat;position:absolute;bottom:30px;left:50%;margin-left:-210px;border:none;color:#fff;font:26px '微软雅黑'}
+.con_bg .work input:active{background-image:url(images/bottom2.png);bottom:35px;}
+.con_bg .work div{margin:0 auto;width:760px;height:500px;padding:20px;}
+.con_bg .work a{background:#fff;float:left;opacity:0;width:150px;height:150px;margin:15px;overflow:hidden;position:relative;font-size:0;overflow:hidden;border-radius:5px;box-shadow: 1px 1px 6px #1B41EC;}
+.con_bg .work a:before{content:'';width:700px;height:700px;border:500px #0C0000 solid;border-radius:50%;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);opacity:0.8;transition:all 0.5s linear;}
+.con_bg .work a:hover:before{width:0;height:0;}
+.con_bg .work a:after{content:'view all work';font:24px/24px arial;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) perspective(600px) rotateY(180deg) scale(5);width:100%;text-align:center;color:#fff;opacity:0.5;transition:all 1s linear;}
+.con_bg .work a:hover:after{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) perspective(600px) rotateY(360deg) scale(1);opacity:1;}
+.work a img{width:100%;height:100%;background-size:cover;}
+/*me*/
+.chat_bg{min-width:960px;background:url(images/pin_03.jpg) no-repeat;background-size:cover;height:100%;}
+
+.recom .me{width:960px;height:100%;-webkit-transform-style:preserve-3d;}
+.me .clik{-webkit-transform-style:preserve-3d;width:123px;height:71px;background:url(images/userbg_clik.png) no-repeat;-webkit-transform :perspective(800px) translateY(60px) translateZ(1px) rotateY(0deg);display:inline-block;color:#fff;text-align:center;line-height:71px;}
+.recom{width:960px;height:100%;margin:0 auto;}
+.recom .recom_name{padding:20px 50px;width:150px;height:435px;background:url(images/me_cord.png) no-repeat;color:#fff;text-align:center;}
+.recom_name h5{height:50px;margin:20px;font-size:18px;}
+.recom_name div{line-height:50px;-webkit-transform :perspective(800px) translateX(0px) scale(.5,.5);-webkit-transition:1s all ease;font-size:22px;}
+.recom_name div:hover{-webkit-transform :perspective(800px) translateX(0px) scale(1,1);}
+.recom_name span{width:150px;height:1px;border-bottom:1px dashed #6FF;display:block;}
+.recom .script{width:960px;height:100%;margin-bottom:30px;}
+</style>
+<script>
+	$(document).ready(function() {
+        $('#fullpage').fullpage({
+			'verticalCentered':false,	
+			'css3':true,
+            anchors: ['page1', 'page2', 'page3'],
+			//'sectionsColor':['#328390','#321350','#352190'],
+			'navigation':true,
+			'navigationPosition':'right',
+			'navigationTooltips':['home','con','call']
+		});
+
+    });
+	document.addEventListener('DOMContentLoaded',function(){
+		var oBgban=document.getElementById('banner_bg');
+		var oBanner=oBgban.querySelector('.banner');
+		var oBegin=oBgban.querySelector('.begin');
+		var oBegin_con=oBgban.querySelector('.begin_con');
+		var oBegin_mask=oBgban.querySelector('.begin_mask');
+		var oConBox=oBgban.querySelector('.con');
+		var aCon=oConBox.children;
+		var oCon=oBgban.querySelector('.con1');
+		var oCon2=oBgban.querySelector('.con2');
+		var oBack=oBgban.querySelector('.begin_back');
+		var oRe_btn=oBgban.querySelector('.re_btn');
+		var oInput=oBgban.querySelector('.begin_back input');
+		oBanner.style.WebkitTransition='.5s all ease';
+		oBegin.style.opacity=0.5;
+		oBanner.style.WebkitTransform = 'perspective(800px) translateY(60px) rotateY(0deg) scale(1,1)';
+		oBanner.addEventListener('transitionend',oBegin_ma,false);
+		function oBegin_ma(){
+			oBanner.removeEventListener('transitionend',oBegin_ma,false);
+			oBegin_mask.style.WebkitTransition='1s all ease';
+			oBegin_mask.style.left='560px';
+			oBegin_mask.addEventListener('transitionend',oBegin_back,false);
+		}
+		function oBegin_back(){
+			oBegin_mask.removeEventListener('transitionend',oBegin_back,false);
+			oBanner.style.WebkitTransition='1s all ease';	
+			oBegin_con.style.opacity=1;
+			oBanner.style.WebkitTransform = 'perspective(800px) translateY(60px) rotateY(180deg)';
+			oBanner.addEventListener('transitionend',oBanner_opa,false);
+		};
+		function oBanner_opa(){
+			oBegin_mask.removeEventListener('transitionend',oBanner_opa,false);
+			oBegin_con.style.WebkitTransition='.5s all ease';
+			oBegin_con.style.opacity=0;
+			oBegin.style.opacity=.4;
+			oBack.style.WebkitTransition='.5s all ease';
+			oBack.style.opacity=0.4;
+			oBack.addEventListener('transitionend',oCon_show,false);
+		}
+		function oCon_show(){
+			oBack.removeEventListener('transitionend',oCon_show,false);
+			for(var i=0;i<aCon.length;i++){	
+				aCon[i].style.WebkitTransition='1s all ease';
+				aCon[i].style.opacity=1;
+				aCon[i].style.WebkitTransform = 'perspective(800px) translateX(1000px) translateY(300px) rotateY(-20deg) rotateX(70deg) translateZ('+i*50+'px) scale(.5,.5)';
+				aCon[i].style.opacity=1;
+			}
+			aCon[aCon.length-1].addEventListener('transitionend',oCon_txt,false);
+		}
+		function oCon_txt(){
+			
+			aCon[aCon.length-1].removeEventListener('transitionend',oCon_txt,false);
+			var str = '  Welcome To My World ! Here is my profile and work.                                                                                                                                                      ';
+	
+			for(var i = 0;i<str.length;i++){
+				var oB = document.createElement('b');
+				oB.innerHTML = str.charAt(i);
+				oBack.appendChild(oB);
+			}
+			var aB =oBack.children;
+			var i = 0;
+			var timer = null;
+			clearInterval(timer);
+			timer = setInterval(function(){
+				move(aB[i],{opacity:1});
+				i++;
+				if(i == aB.length){
+					clearInterval(timer);	
+				}
+			},50);
+			var bOk=false;
+			for(var i=0;i<aCon.length;i++){
+				aCon[i].index=i;
+				aCon[i].onclick=function(){
+					if(bOk){return;}
+					bOk = true;
+					for(var i=0;i<aCon.length;i++){
+						this.style.backgroundImage='url(images/ziliao2.png)';
+						aCon[i].style.WebkitTransform = 'perspective(800px) translateX(1000px) translateY(300px) rotateY(-20deg) rotateX(70deg) translateZ('+i*50+'px) scale(0.5,0.5)';
+					}
+					oBanner.style.WebkitTransition='1s all ease';
+					oBanner.style.opacity=0;
+					if(oBanner.style.display==0){bOk = false;}
+					this.style.backgroundImage='url(images/ziliao.png)';
+					this.style.WebkitTransform = 'perspective(800px) translateX(230px) translateY(100px) rotateY(0deg) rotateX(0deg) translateZ('+i*50+'px) scale(1,1)';
+					this.position='relative';
+					var oInfo=document.createElement('div');
+					var strA=['about me','a little practice'];
+					this.innerHTML='<h3>'+strA[this.index]+'</h3><img src="images/tx.jpg"/><a href="#page'+(this.index+2)+'">ENTER</a>';
+					this.appendChild(oInfo);
+					oRe_btn.style.WebkitTransition='1s all ease';
+					oRe_btn.style.WebkitTransform='perspective(800px) translateX(950px) translateY(100px)';
+				};
+			}
+			oRe_btn.onclick=function(){
+				if(bOk){return;}
+				bOk = true;
+				this.style.WebkitTransform='perspective(800px) translateX(-150px) translateY(100px)';
+				oBanner.style.opacity=1;
+				for(var i=0;i<aCon.length;i++){
+					aCon[i].style.WebkitTransform = 'perspective(800px) translateX(1000px) translateY(300px) rotateY(-20deg) rotateX(70deg) translateZ('+i*50+'px) scale(0.5,0.5)';
+					aCon[i].innerHTML='';
+				}
+				if(oBanner.style.display==0){bOk = false;}
+			}
+			
+		}
+		var oWork=document.querySelector('.work');
+		var oWork_box=oWork.querySelector('div');
+		var aWork_list=oWork.querySelectorAll('a');
+		var oBtn=oWork.querySelector('input');
+		var aPos = [];
+		for(var i = 0;i<aWork_list.length;i++){
+			aPos.push({left:aWork_list[i].offsetLeft,top:aWork_list[i].offsetTop});
+		}
+		
+		var bok=false;
+		function next(){
+			oBtn.onclick=function(){
+				if(bok){return;}
+				bok=true;
+				for(var i=0;i<aWork_list.length;i++){
+					aWork_list[i].style.position= 'absolute';
+					aWork_list[i].style.left=0;
+					aWork_list[i].style.top=0;
+					(function(index){
+						
+						setTimeout(function(){
+							move(aWork_list[index],{left:aPos[index].left,top:aPos[index].top,opacity:1},{complete:function(){
+							oBtn.onclick=function(){
+								for(var i=0;i<aWork_list.length;i++){
+									(function(index){
+										setTimeout(function(){
+											move(aWork_list[index],{left:0,top:0,opacity:0},{complete:function(){
+												if(index==0){bok=false;}
+												next();
+		}});
+										},i*100);
+									})(i);
+								}
+							}
+									
+						}});
+						},i*100);
+					})(i);
+				}
+			}			
+		}
+		next();
+		function rnd(m,n){
+			return Math.floor(Math.random()*(n-m)+m);	
+		}
+		var oMe=document.querySelector('.me');
+		var oMe_btn=oMe.children;
+		var count=1;
+		for(var i=0;i<oMe_btn.length;i++){
+			oMe_btn[i].style.WebkitTransition='2s all ease';
+			oMe_btn[i].style.WebkitTransform='perspective(800px) translateY('+rnd(-50,120)+'px) translateZ('+rnd(50,100)+'px)  rotateY('+rnd(0,181)+'deg)';
+			oMe_btn[i].onmouseover=function(){
+				this.style.backgroundImage='url(images/userbg_clikb.png)';
+				this.style.WebkitTransform='perspective(800px) translateY('+rnd(-50,120)+'px) translateZ('+rnd(50,100)+'px)  rotateY('+rnd(0,181)+'deg)';
+				this.style.fontSize=40+'px';
+			};
+			oMe_btn[i].onmouseout=function(){
+				this.style.backgroundImage='url(images/userbg_clik.png)';
+				this.style.WebkitTransform='perspective(800px) translateY('+rnd(-50,120)+'px) translateZ('+rnd(50,100)+'px)  rotateY('+rnd(0,181)+'deg)';
+				this.style.fontSize=20+'px';
+			};
+		}
+		
+	},false);
+</script>
+</head>
+
+<body>
+	<!--head -->
+	<!--banner -->
+	<div id="fullpage">
+    	<div class="banner_bg section" id="banner_bg">
+        	<div class="banner w">
+            	<div class="begin">
+                	<div class="begin_con"></div>
+                    <div class="begin_mask"></div>
+                </div>
+                <div class="begin_left"></div>
+                <div class="begin_right"></div>
+                <div class="begin_top"></div>
+                <div class="begin_bottom"></div>
+                <div class="begin_back"></div>
+            </div>
+                <ul class="con">
+                    <li class="con1">
+                    </li>
+                    <li class="con2"></li>
+                </ul>
+                <div class="re_btn"></div>
+        </div>
+        <!--2 -->
+    	<div class="section chat_bg">
+        	<div class="recom">
+            	<div class="recom_name">
+                	<h5>陈&nbsp;梦</h5>
+                    <div>性别&nbsp;女</div>
+                    <span></span>
+                    <div>年纪&nbsp;24岁</div>
+                    <span></span>
+                    <div>现居&nbsp;北京</div>
+                    <span></span>
+                    <div>15137116620</div>
+                    <span></span>
+                </div>
+            	<div class="script">
+                    <div class="me">
+                        <span class="clik">P S</span>
+                        <span class="clik">HTML5</span>
+                        <span class="clik">CSS3</span>
+                        <span class="clik">J S</span>
+                        <span class="clik">J Q</span>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+        <!--3 -->
+    	<div class="section con_bg">
+            <div class="work">
+                <input type="button" value="展 示">
+                <div>
+                    <a href="views/appjhs/index.html" target="_blank">
+                    	<img src="images/views.png" />
+                    </a>
+                    <a href="views/aoshiplayer/player.html" target="_blank">
+                    	<img src="images/views2.png" />
+                    </a>
+                    <a href="#">
+                    </a>
+                    <a href="#">
+                    </a>
+                    <a href="#">
+                    </a>
+                    <a href="#">
+                    </a>
+                    <a href="#">
+                    </a>
+                    <a href="#">
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
+	<!-- -->
+</body>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
-
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
-
-<h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating pages manually</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can @mention a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
 </html>
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+body{ border:1px solid red;}
+*{margin:0;padding:0;}
+#box{width:966px; margin:0 auto;}
+ul{ list-style:none; width:300px;margin:0 10px; float:left; border:1px solid red;}
+ul li{ width:100%; margin:10px 0px; height:150px; background:#ccc;}
+</style>
+<script>
+	window.onload = function(){
+		function rnd(m,n){
+			return parseInt(m+Math.random()*(n-m));
+		}
+		var oBox = document.getElementById('box');
+		var aUl = oBox.children;
+		function createLi(){
+			var oLi = document.createElement('li');
+			oLi.style.height = rnd(100,351)+'px';
+			oLi.style.background = 'rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
+			return oLi;
+		}
+		//1.生成20个li
+		for(var i = 0;i<20;i++){
+			//2成一个高度和颜色随机的li
+			var oLi = createLi();
+			//3找当前最短的ul
+			//var arr = [ul0,ul1,ul2];
+			var arr = [];
+			for(var j = 0;j<aUl.length;j++){
+				arr.push(aUl[j]);
+			}
+			arr.sort(function(ul1,ul2){
+				return ul1.offsetHeight - ul2.offsetHeight;
+			});
+			//4将li插入到最短的ul中
+			arr[0].appendChild(oLi);
+		}
+		
+		window.onscroll = function(){
+			var sT = document.documentElement.scrollTop||document.body.scrollTop;
+			var cH = document.documentElement.clientHeight;
+			var scrollBottom = sT+cH;
+			//alert(document.body.scrollHeight);
+			if(document.body.scrollHeight<=scrollBottom){
+				alert('到底了');
+			}
+
+			
+		};
+	};
+</script>
+</head>
+<body>
+	<div id="box">
+    	<ul>
+        </ul>
+    	<ul>
+        </ul>
+    	<ul>
+        </ul>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+

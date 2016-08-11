@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com">
+<meta name="copyright" content="智能社 - zhinengshe.com">
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+	#img1{ position:absolute;left:0; top:0;}
+</style>
+<script src="move8.js"></script>
+<script>
+	window.onload = function(){
+		var oImg = document.getElementById('img1');	
+		var aPos = [
+			{left:300,top:0},
+			{left:300,top:300},
+			{left:0,top:300},
+			{left:0,top:0}
+		];
+		var iNow = 0;
+		function next(){
+			move(oImg,aPos[iNow],{complete:function(){
+					iNow++;
+					if(iNow == aPos.length){
+						iNow = 0;	
+					}
+					next();
+			}});
+		}
+		next();
+	};
+</script>
+</head>   
+<body>
+	<img src="ball.jpg" id="img1">
+</body>
+</html>

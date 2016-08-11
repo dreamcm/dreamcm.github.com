@@ -1,0 +1,1267 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link href="base.css" rel="stylesheet" type="text/css" />
+<link href="css/index.css" rel="stylesheet" type="text/css" />
+<script src="js/addWheel.js"></script>
+<script src="js/move.js"></script>
+<script src="js/move1.js"></script>
+<script src="js/Tab.js"></script>
+<script>
+	window.onload=function(){
+		new Banner('banner');
+		new Head('head');
+		
+		new Tab('hot');
+		new Tab('hot2');
+		new Tab('hot3');
+		new Tab('hot5');
+		new TabCli('hot4');
+		new Info('info');
+		new Info('info2');
+		new Info('info3');
+		new Info('info4');
+		sCroll('scroll_box','slidelist','slideCon');
+		sCroll('scroll_boxR','rig','conL');
+		function sCroll(obj,sild,sil2){
+			var oS=document.getElementById(obj);
+			var oSlideBox=document.getElementById(sild);
+			var oSlideCon=document.getElementById(sil2);
+			var oBar=oS.children[0];
+			var oScroll_t=oS.children[1];
+			var oScroll_b=oS.children[2];
+			var oGbox=document.getElementById(sild);
+			function setPos(t){
+				if(t<oScroll_t.offsetHeight+2){
+					t = oScroll_t.offsetHeight+2;
+				}else if(t>oS.offsetHeight - oBar.offsetHeight-oScroll_t.offsetHeight-2){
+					t = oS.offsetHeight - oBar.offsetHeight-oScroll_t.offsetHeight-2;
+				}
+				oBar.style.top = t +'px';
+				var scale = (t-(oScroll_t.offsetHeight+2))/(oS.offsetHeight - oBar.offsetHeight);
+				if((oSlideCon.offsetHeight- oSlideBox.offsetHeight)>=0){
+					
+					oSlideCon.style.top = - scale*(oSlideCon.offsetHeight- oSlideBox.offsetHeight)+'px';
+				}
+			}
+			oBar.onmousedown = function(ev){
+				var oEvent = ev||event;
+				var disY = oEvent.clientY - oBar.offsetTop;
+				document.onmousemove = function(ev){
+					var oEvent = ev||event;
+					var t = oEvent.clientY - disY;
+					setPos(t);
+				};
+				document.onmouseup = function(){
+					document.onmouseup = null;
+					document.onmousemove = null;
+					oBar.releaseCapture&&oBar.releaseCapture();
+				};
+				oBar.setCapture&&oBar.setCapture();
+				return false;
+			};
+			addWheel(oGbox,function(down){
+				var t = oBar.offsetTop;
+				if(down){
+					t+=10;
+				}else{
+					t-=10;
+				}
+				setPos(t);
+			});
+		}
+	};
+</script>
+</head>
+
+<body>
+<!--playerBox -->
+	<div class="playerBox">
+    	<div class="w playerBor">
+<!--head -->
+	<div class="head w">
+    	<div class="heaf_tit clear" id="head">
+        	<a href="javascript:;"></a>
+        	<a href="javascript:;"></a>
+        	<a href="javascript:;"></a>
+        </div>
+    </div>
+<!--main-->
+	<div class="main w clear" id="main">
+	<!--slider-->
+    	<div class="slider fl">
+        	<div class="slide_seach">
+        		<input type="text" />
+                <a href="javascript:;"><span></span></a>
+            </div>
+            <div class="slideuser_btn clear">
+            	<span class="slideuser_btnA">傲视影音</span>
+            	<span>我的播放</span>
+            	<span class="slideuser_btnS">直播</span>
+            	<span class="slideuser_btnS">游戏</span>
+            	<span class="slideuser_btnB">用户</span>
+            </div>
+            <div class="slideuser_con clear">
+            	<div class="slideuser_conL fl">
+                	<img src="img/face.png"  />
+                </div>
+            	<div class="slideuser_conR fl">
+                	<p class="clear Uname">
+                    	<span class="fl">dream_chen</span>
+                    	<img src="img/user_doudou.png" class="fl">
+                    </p>
+                	<p class="clear dengji">
+                    	<em class="fl"></em>
+                    	<b class="fl"></b>
+                    	<span class="fl">(0)</span>
+                    	<b class="fl yue"></b>
+                    	<span class="fl">(1)</span>
+                    	<b class="fl xing"></b>
+                    	<span class="fl">(2)</span>
+                    </p>
+                    <p class="money clear">
+                    	<span>我的硬币:</span>
+                        <em>1000</em>
+                    	<b>我要兑换</b>
+                    </p>
+                </div>
+            </div>
+            <!--slidelist-->
+            <div class="slidelist" id="slidelist">
+            	<!--slideScrollBar-->
+            	<div class="scroll_box" id="scroll_box">
+                	<span class="scroll_bar"></span>
+                	<span class="scroll_t"></span>
+                	<span class="scroll_b"></span>
+                </div>
+                <!--slideCon-->
+                <div class="slideCon" id="slideCon">
+                    <div class="newgame clear">
+                    	<em class="fl"></em>
+                    	<p class="fl">今日有新游戏</p>
+                        <span class="fl">+</span>
+                    </div>
+                    <div class="hotgame" id="hot">
+                    	<div class="hotgame_tit clear">
+                        	<span class="cur">傲视影院</span>
+                            <span>热门游戏</span>
+                            <span>购物优惠</span>
+                            <b class="fr">-</b>
+                        </div>
+                        <div class="jian">
+                        <ul class="hotgame_list">
+                        	<li class="clear odd">
+                            	<p class="fl">[欧美]嘻哈三部曲之绝世高手</p>
+                                <b>播放</b>
+                            </li>
+                            <li class="clear">
+                            	<p class="fl">[大陆]青春荷尔蒙</p>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear odd">
+                            	<p class="fl">[欧美]嘻哈三部曲之绝世高手</p>
+                                <b>播放</b>
+                            </li>
+                            <li class="clear">
+                            	<p class="fl">[大陆]青春荷尔蒙</p>
+                                <b>播放</b>
+                            </li>
+                        </ul>
+                        <ul class="hotgame_list" style="display:none">
+                        	<li class="clear odd">
+                            	<p class="fl">[欧美]嘻哈三部2曲之绝世高手</p>
+                                <b>播放</b>
+                            </li>
+                            <li class="clear">
+                            	<p class="fl">[大陆]青春2荷尔蒙</p>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear odd">
+                            	<p class="fl">[欧美]嘻哈三2部曲之绝世高手</p>
+                                <b>播放</b>
+                            </li>
+                            <li class="clear">
+                            	<p class="fl">[大陆]青春2荷尔蒙</p>
+                                <b>播放</b>
+                            </li>
+                        </ul>
+                        <ul class="hotgame_list" style="display:none">
+                        	<li class="clear odd">
+                            	<p class="fl">[欧美]嘻哈三部曲之3绝世高手</p>
+                                <b>播放</b>
+                            </li>
+                            <li class="clear">
+                            	<p class="fl">[大陆]青春荷尔3蒙</p>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear odd">
+                            	<p class="fl">[欧美]嘻哈三3部曲之绝世高手</p>
+                                <b>播放</b>
+                            </li>
+                            <li class="clear">
+                            	<p class="fl">[大陆]青春3荷尔蒙</p>
+                                <b>播放</b>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                    <div class="hotgame" id="hot2">
+                    	<div class="hotgame_tit clear">
+                        	<span class="cur">同步剧场</span>
+                            <span>影院大片</span>
+                            <span>热门综艺</span>
+                            <b class="fr">-</b>
+                        </div>
+                        <div class="jian">
+                        <ul class="hotgame_list jucang">
+                        	<li class="clear odd">
+                            	<p class="fl fen">[历史]赵氏孤儿案</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear">
+                            	<p class="fl">[伦理]第二十二条婚规</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear odd">
+                            	<p class="fl">[历史]赵氏孤儿案</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear">
+                            	<p class="fl">[喜剧]娘要嫁人</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear odd">
+                            	<p class="fl">[战争]箭在弦上</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        </ul>
+                        <ul class="hotgame_list jucang" style="display:none">
+                        	<li class="clear odd">
+                            	<p class="fl fen">[历史]赵1氏孤儿案</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear">
+                            	<p class="fl">[伦理]第二十二1条婚规</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear odd">
+                            	<p class="fl">[历史]赵氏孤1儿案</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear">
+                            	<p class="fl">[喜剧]娘1要嫁人</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear odd">
+                            	<p class="fl">[战争]箭在1弦上</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        </ul>
+                        <ul class="hotgame_list jucang" style="display:none">
+                        	<li class="clear odd">
+                            	<p class="fl fen">[历史]赵氏孤儿案2</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear">
+                            	<p class="fl">[伦理]第二十二条婚规2</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear odd">
+                            	<p class="fl">[历史]赵氏孤儿案2</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear">
+                            	<p class="fl">[喜剧]娘要嫁人2</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        	<li class="clear odd">
+                            	<p class="fl">[战争]箭在弦上2</p>
+                                <span class="fl">(<em>30</em>/40)</span>
+                                <b>播放</b>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                    <div class="tongbu">
+                    	<p class="fl">同步卫视，100部剧等着你</p>
+                        <span class="fr"></span>
+                    </div>
+                    <div class="hotgame" id="hot3">
+                    	<div class="hotgame_tit clear">
+                        	<h4 class="liang fl">视频库</h4>
+                            <span>电视剧</span>
+                            <span>电影</span>
+                            <span class="cur">动漫</span>
+                            <span>综艺</span>
+                            <b class="fr">-</b>
+                        </div>
+                        <div class="jian">
+                        <ul class="hotgame_list jucang shipin">
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">内地剧场3</p>
+                                <span class="fl">(<em>2023</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">港台剧场3</p>
+                                <span class="fl">(<em>233</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">韩剧剧场3</p>
+                                <span class="fl">(<em>223</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">欧美剧场3</p>
+                                <span class="fl">(<em>2023</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">其他剧场3</p>
+                                <span class="fl">(<em>1200</em>部)</span>
+                            </li>
+                        </ul>
+                        <ul class="hotgame_list jucang shipin" style="display:none">
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">内地剧场3</p>
+                                <span class="fl">(<em>23</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">港台剧场3</p>
+                                <span class="fl">(<em>4433</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">韩剧剧场3</p>
+                                <span class="fl">(<em>223</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">欧美剧场3</p>
+                                <span class="fl">(<em>2023</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">其他剧场3</p>
+                                <span class="fl">(<em>1200</em>部)</span>
+                            </li>
+                        </ul>
+                        <ul class="hotgame_list jucang shipin" style="display:none">
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">内地剧场3</p>
+                                <span class="fl">(<em>2023</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">港台剧场3</p>
+                                <span class="fl">(<em>233</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">韩剧剧场3</p>
+                                <span class="fl">(<em>223</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">欧美剧场3</p>
+                                <span class="fl">(<em>2023</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">其他剧场3</p>
+                                <span class="fl">(<em>1200</em>部)</span>
+                            </li>
+                        </ul>
+                        <ul class="hotgame_list jucang shipin" style="display:none">
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">内地剧场3</p>
+                                <span class="fl">(<em>2723</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">港台剧场3</p>
+                                <span class="fl">(<em>233</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">韩剧剧场3</p>
+                                <span class="fl">(<em>223</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">欧美剧场3</p>
+                                <span class="fl">(<em>2023</em>部)</span>
+                            </li>
+                        	<li class="clear odd">
+                            	<i class="fl">+</i>
+                            	<p class="fl fen">其他剧场3</p>
+                                <span class="fl">(<em>1200</em>部)</span>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                    <div class="hotgame" id="hot4">
+                    	<div class="hotgame_tit clear">
+                        	<h4 class="liang fl">视频库</h4>
+                            <span>电视剧</span>
+                            <span>电影</span>
+                            <span class="cur">动漫</span>
+                            <span>综艺</span>
+                            <b class="fr">-</b>
+                        </div>
+                        <div class="jian">
+                        <div class="hotgame_list sp_info" id="info">
+                        	<div class="clear info_li " style="display:none;">
+                            	<span class="fl">1</span>
+                            	<p class="fl">恋了爱了</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">2</span>
+                            	<p class="fl">箭在弦上</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">3</span>
+                            	<p class="fl">百万的遗产</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">4</span>
+                            	<p class="fl">娘要嫁人</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">5</span>
+                            	<p class="fl">爱情自有天意</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">6</span>
+                            	<p class="fl">华丽一族</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="hotgame_list sp_info" id="info2" style="display:none">
+                        	<div class="clear info_li " style="display:none;">
+                            	<span class="fl">1</span>
+                            	<p class="fl">恋了22爱了</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">2</span>
+                            	<p class="fl">箭在弦上</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">3</span>
+                            	<p class="fl">百万的遗产</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">4</span>
+                            	<p class="fl">娘要嫁人</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">5</span>
+                            	<p class="fl">爱情自有天意</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">6</span>
+                            	<p class="fl">华丽一族</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="hotgame_list sp_info" id="info3" style="display:none">
+                        	<div class="clear info_li " style="display:none;">
+                            	<span class="fl">1</span>
+                            	<p class="fl">恋了爱了</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">2</span>
+                            	<p class="fl">箭在弦上</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">3</span>
+                            	<p class="fl">百万的遗产</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">4</span>
+                            	<p class="fl">娘要嫁人</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">5</span>
+                            	<p class="fl">爱情自有天意</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">6</span>
+                            	<p class="fl">华丽一族</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="hotgame_list sp_info" id="info4" style="display:none">
+                        	<div class="clear info_li " style="display:none;">
+                            	<span class="fl">1</span>
+                            	<p class="fl">恋了爱了</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">2</span>
+                            	<p class="fl">箭在弦上</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">3</span>
+                            	<p class="fl">百万的遗产</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">4</span>
+                            	<p class="fl">娘要嫁人</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">5</span>
+                            	<p class="fl">爱情自有天意</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        	<div class="clear info_li ">
+                            	<span class="fl">6</span>
+                            	<p class="fl">华丽一族</p>
+                                <b>播放</b>
+                            </div>
+                            <div class="info_con clear" style="display:none">
+                                <img src="img/movie_rank_eg.png" class="fl" />
+                                <div class="fl info_R">
+                                	<div class="clear info_tit">
+                            			<span class="fl">1</span>
+                            			<p class="fl">恋了爱了</p>
+                                    </div>
+                                    <p class="story">故事讲述了女青年小溪由于家庭贫寒，通过努力未能如期进入...</p>
+                                    <i class="djplay">点击播放</i>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        </div>
+                    </div>
+                    <div class="hotgame" id="hot5">
+                    	<div class="hotgame_tit clear player">
+                        	<span class="cur">播放历史</span>
+                            <span>我的收藏</span>
+                            <b class="fr">-</b>
+                        </div>
+                        <div class="jian">
+                        <ul class="hotgame_list playerli">
+                        	<li class="clear">
+                            	<b></b>
+                            	<p class="fl">万水千山总是情-片花</p>
+                                <span class="fr">13:34</span>
+                            </li>
+                        	<li class="clear">
+                            	<b></b>
+                            	<p class="fl">万水千山总是情-片花</p>
+                                <span class="fr">13:34</span>
+                            </li>
+                        	<li class="clear">
+                            	<b></b>
+                            	<p class="fl">万水千山总是情-片花</p>
+                                <span class="fr">13:34</span>
+                            </li>
+                        	<li class="clear">
+                            	<b></b>
+                            	<p class="fl">万水千山总是情-片花</p>
+                                <span class="fr">13:34</span>
+                            </li>
+                        	<li class="clear">
+                            	<b></b>
+                            	<p class="fl">万水千山总是情-片花</p>
+                                <span class="fr">13:34</span>
+                            </li>
+                        	<li class="clear playlast">
+                            	<b class="fl">清空</b>
+                            	<p class="fl">查看全部</p>
+                                <em class="fr">+展开</em>
+                            </li>
+                        </ul>
+                        <ul class="hotgame_list playerli" style="display:none">
+                        	<li class="clear">
+                            	<b></b>
+                            	<p class="fl">遥远的她-片花</p>
+                                <span class="fr">13:34</span>
+                            </li>
+                        	<li class="clear">
+                            	<b></b>
+                            	<p class="fl">再见二丁目</p>
+                                <span class="fr">13:34</span>
+                            </li>
+                        	<li class="clear">
+                            	<b></b>
+                            	<p class="fl">万水千山总是情-片花</p>
+                                <span class="fr">13:34</span>
+                            </li>
+                        	<li class="clear">
+                            	<b></b>
+                            	<p class="fl">万水千山总是情-片花</p>
+                                <span class="fr">13:34</span>
+                            </li>
+                        	<li class="clear">
+                            	<b></b>
+                            	<p class="fl">万水千山总是情-片花</p>
+                                <span class="fr">13:34</span>
+                            </li>
+                        	<li class="clear playlast">
+                            	<b class="fl">清空</b>
+                            	<p class="fl">查看全部</p>
+                                <em class="fr">+展开</em>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                    <div class="tuig">
+                    	<img src="img/ad.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+	<!--con-->     
+        <div class="con fl">
+            <!--slideScrollBar-->
+            <div class="scroll_boxR" id="scroll_boxR">
+                	<span class="scroll_barR"></span>
+                	<span class="scroll_tR"></span>
+                	<span class="scroll_bR"></span>
+            </div>
+            <div class="nav clear">
+                <b class="fl"></b>
+                <em class="fl"></em>
+                <span class="fen">&bull;首页</span>
+                <span>电影</span>
+                <span>电视剧</span>
+                <span>动漫</span>
+                <span>综艺</span>
+                <span>音乐</span>
+                <span>卫视直播</span>
+                <span>影院大片</span>
+                <div class="fr">
+                    <input type="text" >
+                    <i></i>
+                </div>
+            </div>
+            <div id="rig" class="rig">
+            	<div class="conL" id="conL" >
+                
+            	<div class="banner" id="banner">
+            	<img src="img/1.jpg" class="big" />
+                <p class="mask">箭在弦上（第41集大结局）</p>
+                <div class="bannerCon clear">
+                	<i></i>
+                    <img src="img/small_01.jpg" />
+                    <img src="img/small_02.jpg" />
+                    <img src="img/small_03.jpg" />
+                    <img src="img/small_01.jpg" />
+                    <img src="img/small_02.jpg" />
+                    <img src="img/small_03.jpg" />
+                    <img src="img/small_01.jpg" />
+                    <img src="img/small_02.jpg" />
+                    <img src="img/small_03.jpg" />
+                    <img src="img/small_01.jpg" />
+                </div>
+            </div>
+    <!--conList-->
+             	<h3 class="typetit">今日热点</h3>
+             	<ul class="conList_hot clear">
+                	<li class="fl">
+                    	<a href="javascript:;">
+                        <img src="img/av_eg.jpg" />
+                        <b></b>
+                        </a>
+                        <p>扬州发现隋炀帝真正陵寝</p>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;">
+                        <img src="img/av_eg.jpg" />
+                        <b></b>
+                        </a>
+                        <p>扬州发现隋炀帝真正陵寝</p>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;">
+                        <img src="img/av_eg.jpg" />
+                        <b></b>
+                        </a>
+                        <p>扬州发现隋炀帝真正陵寝</p>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;">
+                        <img src="img/av_eg.jpg" />
+                        <b></b>
+                        </a>
+                        <p>扬州发现隋炀帝真正陵寝</p>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;">
+                        <img src="img/av_eg.jpg" />
+                        <b></b>
+                        </a>
+                        <p>扬州发现隋炀帝真正陵寝</p>
+                    </li>
+                </ul>
+                
+                <div class="movie clear">
+             		<h3 class="typetit fl">电影</h3>
+                	<div class="typecon fr">
+                    	<a href="javascript:;">华语</a>|
+                    	<a href="javascript:;">好莱坞</a>|
+                    	<a href="javascript:;">欧洲</a>|
+                    	<a href="javascript:;">日本</a>|
+                    	<a href="javascript:;">韩国</a>|
+                    	<a href="javascript:;">更多&gt;&gt;</a>
+                    </div>
+                </div>
+             	<ul class="conList_hot conList_mov clear">
+                	<li class="fl">
+                    	<a href="javascript:;">
+                        <img src="img/av_eg2.jpg" />
+                        <b></b>
+                        </a>
+                        <span>特殊教育</span>
+                        <p>青涩少年陪酒</p>
+                        <i></i>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;">
+                        <img src="img/av_eg2.jpg" />
+                        <b></b>
+                        </a>
+                        <span>特殊教育</span>
+                        <p>青涩少年陪酒</p>
+                        <i></i>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;">
+                        <img src="img/av_eg2.jpg" />
+                        <b></b>
+                        </a>
+                        <span>特殊教育</span>
+                        <p>青涩少年陪酒</p>
+                        <i></i>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;">
+                        <img src="img/av_eg2.jpg" />
+                        <b></b>
+                        </a>
+                        <span>特殊教育</span>
+                        <p>青涩少年陪酒</p>
+                        <i></i>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;">
+                        <img src="img/av_eg2.jpg" />
+                        <b></b>
+                        </a>
+                        <span>特殊教育</span>
+                        <p>青涩少年陪酒</p>
+                        <i></i>
+                    </li>
+                </ul>
+                
+                <div class="movie clear">
+             		<h3 class="typetit fl">电视剧</h3>
+                	<div class="typecon fr">
+                    	<a href="javascript:;">华语</a>|
+                    	<a href="javascript:;">好莱坞</a>|
+                    	<a href="javascript:;">欧洲</a>|
+                    	<a href="javascript:;">日本</a>|
+                    	<a href="javascript:;">韩国</a>|
+                    	<a href="javascript:;">更多&gt;&gt;</a>
+                    </div>
+                </div>
+             	<ul class="conList_hot conList_mov conList_tv clear">
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg3.jpg" /></a>
+                        <span>天空之眼</span>
+                        <p>蔚蓝大地下的曙光</p>
+                        <i></i>
+                        <b>13集全</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg3.jpg" /></a>
+                        <span>天空之眼</span>
+                        <p>蔚蓝大地下的曙光</p>
+                        <i></i>
+                        <b>13集全</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg3.jpg" /></a>
+                        <span>天空之眼</span>
+                        <p>蔚蓝大地下的曙光</p>
+                        <i></i>
+                        <b>13集全</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg3.jpg" /></a>
+                        <span>天空之眼</span>
+                        <p>蔚蓝大地下的曙光</p>
+                        <i></i>
+                        <b>13集全</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg3.jpg" /></a>
+                        <span>天空之眼</span>
+                        <p>蔚蓝大地下的曙光</p>
+                        <i></i>
+                        <b>13集全</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg3.jpg" /></a>
+                        <span>天空之眼</span>
+                        <p>蔚蓝大地下的曙光</p>
+                        <i></i>
+                        <b>13集全</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg3.jpg" /></a>
+                        <span>天空之眼</span>
+                        <p>蔚蓝大地下的曙光</p>
+                        <i></i>
+                        <b>13集全</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg3.jpg" /></a>
+                        <span>天空之眼</span>
+                        <p>蔚蓝大地下的曙光</p>
+                        <i></i>
+                        <b>13集全</b>
+                    </li>
+                </ul>
+                
+                <div class="ad">
+                	<img src="img/ad2.png" />
+                </div>
+                
+                <div class="movie clear">
+             		<h3 class="typetit fl">综艺</h3>
+                	<div class="typecon fr">
+                    	<a href="javascript:;">内地</a>|
+                    	<a href="javascript:;">港台</a>|
+                    	<a href="javascript:;">欧美</a>|
+                    	<a href="javascript:;">更多&gt;&gt;</a>
+                    </div>
+                </div>
+             	<ul class="conList_hot conList_mov conList_tv clear">
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg4.jpg" /></a>
+                        <span>总决赛羽泉爆冷夺冠</span>
+                        <p>栏目：我是歌手</p>
+                        <i></i>
+                        <b>13集全</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg4.jpg" /></a>
+                        <span>总决赛羽泉爆冷夺冠</span>
+                        <p>栏目：我是歌手</p>
+                        <i></i>
+                        <b>13集全</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg4.jpg" /></a>
+                        <span>总决赛羽泉爆冷夺冠</span>
+                        <p>栏目：我是歌手</p>
+                        <i></i>
+                        <b>13集全</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg4.jpg" /></a>
+                        <span>总决赛羽泉爆冷夺冠</span>
+                        <p>栏目：我是歌手</p>
+                        <i></i>
+                        <b>13集全</b>
+                    </li>
+                </ul>
+                
+                <div class="movie clear">
+             		<h3 class="typetit fl">动漫</h3>
+                	<div class="typecon fr">
+                    	<a href="javascript:;">搞笑</a>|
+                    	<a href="javascript:;">剧情</a>|
+                    	<a href="javascript:;">冒险</a>|
+                    	<a href="javascript:;">更多&gt;&gt;</a>
+                    </div>
+                </div>
+             	<ul class="conList_hot conList_mov conList_tv clear">
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg5.jpg" /></a>
+                        <span>十万个冷笑话</span>
+                        <i></i>
+                        <b>86:10</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg5.jpg" /></a>
+                        <span>十万个冷笑话</span>
+                        <i></i>
+                        <b>86:10</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg5.jpg" /></a>
+                        <span>十万个冷笑话</span>
+                        <i></i>
+                        <b>86:10</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg5.jpg" /></a>
+                        <span>十万个冷笑话</span>
+                        <i></i>
+                        <b>86:10</b>
+                    </li>
+                </ul>
+                
+                <div class="movie clear">
+             		<h3 class="typetit fl">原创&middot;微栏目</h3>
+                	<div class="typecon fr">
+                    	<a href="javascript:;">更多&gt;&gt;</a>
+                    </div>
+                </div>
+             	<ul class="conList_hot conList_mov conList_tv clear">
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg6.jpg" /></a>
+                        <span>晓松奇谈</span>
+                        <i></i>
+                        <b>大棚嘚吧嘚</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg6.jpg" /></a>
+                        <span>晓松奇谈</span>
+                        <i></i>
+                        <b>大棚嘚吧嘚</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg6.jpg" /></a>
+                        <span>晓松奇谈</span>
+                        <i></i>
+                        <b>大棚嘚吧嘚</b>
+                    </li>
+                	<li class="fl">
+                    	<a href="javascript:;"><img src="img/av_eg6.jpg" /></a>
+                        <span>晓松奇谈</span>
+                        <i></i>
+                        <b>大棚嘚吧嘚</b>
+                    </li>
+                </ul>
+                
+            </div>
+            </div>
+        </div>
+    </div>
+<!--foot -->
+			<div class="foot"><img src="img/footer.png" ></div>
+		</div>
+    </div>
+</body>
+</html>

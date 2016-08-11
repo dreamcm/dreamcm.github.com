@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0; padding:0; list-style:none;}
+#box{width:600px; height:400px; margin:100px auto; position:relative; top:0; left:0; overflow:hidden;}
+ul{position:absolute; top:0; left:0; height:400px;}
+ul li{width:600px;height:400px; float:left; font-size:50px; text-align:center; line-height:400px; font-weight:bold; color:#fff;}
+ol{position:absolute; bottom:20px; width:400px; left:50%; margin-left:-200px;}
+ol li{float:left; width:80px; height:20px; background:#ccc; margin:10px;}
+ol li span{float:left; width:0; height:20px; background:#399;}
+</style>
+<script src="domove.js" ></script>
+<script>
+	window.onload=function(){
+		var oBox=document.getElementById('box');
+		var oUl = oBox.children[0];
+		var aLi = oUl.children;
+		oUl.style.width = aLi[0].offsetWidth*aLi.length+'px';
+		var aSpan=oBox.children[1].getElementsTagName('span');
+		function next(){
+			domove(){
+					
+			}
+		}
+	};
+</script>
+</head>
+
+<body>
+<div id="box">
+	<ul>
+    	<li style="background:#f33;">0</li>
+    	<li style="background:#3f3;">1</li>
+    	<li style="background:#33f;">2</li>
+    	<li style="background:#333;">3</li>
+    </ul>
+    <ol>
+    	<li><span></span></li>
+    	<li><span></span></li>
+    	<li><span></span></li>
+    	<li><span></span></li>
+    </ol>
+</body>
+</html>
