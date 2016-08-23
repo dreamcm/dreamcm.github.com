@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0; padding:0;}
+body{background:#000;height:100%;overflow:hidden;}
+.draw_box{text-align:center;position:relative;width:810px;height:100%;position:absolute;bottom:0;box-shadow:inset 5px 5px 5px #333,inset -5px 5px 5px #333;}
+canvas{ background:#fff;}
+strong{ color:pink;}
+.tool{width:100%;height:80px;border-radius:9px;position:absolute;bottom:0;left:0;
+background:-webkit-linear-gradient(
+rgba(204,204,204,1),rgba(150,150,150,1));
+box-shadow:0px -4px 2px rgba(102,102,102,1);
+background:-moz-linear-gradient(
+rgba(204,204,204,1),rgba(150,150,150,1));
+box-shadow:0px -4px 2px rgba(102,102,102,1);}
+.tool b{float:left;margin-left:20px;}
+.tool b img{width:60px;height:60px;margin-top:20px;}
+.color{width:60px;height:60px;position:absolute;bottom:0;right:0;margin-right:50px;}
+.color em{width:50px;height:50px;display:block;}
+.color em img{width:60px;height:60px;display:block;}
+.color span{width:180px;height:100px;background:#000;position:absolute; right:50px; bottom:0;display:block;overflow:hidden;opacity:0;border-radius:5px;box-shadow:inset 0px 5px 2px #333;}
+.color span i{width:20px;height:20px;border-radius:50%;opacity:1;margin:10px;float:left;background:red;}
+</style>
+<script src="js/move.js"></script>
+<script>
+window.onload=function(){
+	var oC = document.querySelector('#c1');
+	var gd = oC.getContext('2d');
+	var oTool=document.querySelector('.tool');
+	var aB=oTool.querySelectorAll('b');
+	var oColor_box=oTool.querySelector('.color');
+	var oColor=oColor_box.querySelector('span');
+	var oBtn=oColor_box.querySelector('em');
+	var aColor_list=oColor.querySelectorAll('i');
+	oC.onmousedown = function(ev){
+		gd.beginPath();
+		var x=0,y=0;
+		var disX=ev.pageX-x-oC.offsetLeft;
+		var disY=ev.pageY-y-oC.offsetTop;
+		gd.moveTo(disX,disY);
+		document.onmousemove=function(ev){
+			gd.lineTo(ev.pageX-x-oC.offsetLeft,ev.pageY-y-oC.offsetTop);
+			gd.stroke();
+		};
+		document.onmouseup=function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+		};
+		return false;
+	};
+	aB[0].onclick=function(){
+		gd.lineWidth = 0.1;
+		gd.strokeStyle = 'rgba(0,0,0,0.1)';
+		//gd.strokeStyle = 'rgba(0,255,0,0.5)';
+	};
+	aB[1].onclick=function(){
+		gd.lineWidth = 10;
+		gd.strokeStyle = 'rgba(0,0,0,0.1)';
+	};
+	aB[2].onclick=function(){
+		gd.lineWidth = 5;
+		gd.strokeStyle = 'rgba(0,0,0,0.5)';
+	};
+	aB[3].onclick=function(){
+		gd.lineWidth = 1;
+		gd.strokeStyle = 'rgba(0,0,0,1)';
+	};
+	aB[4].onclick=function(){
+		gd.clearRect(0,0,oC.width,oC.height);
+	};
+	var aPos = [];
+	for(var i = 0;i<aColor_list.length;i++){
+		aPos.push({left:aColor_list[i].offsetLeft,top:aColor_list[i].offsetTop});
+	}
+	var bOk=false;
+	var arrColor=['red','white','orange','aqua','pink','blue','green','purple'];
+	function showColor(){
+		oBtn.onclick=function(){
+			if(bOk){return;}
+			bOk=true;
+			move(oColor,{opacity:1});
+			for(var i=0;i<aColor_list.length;i++){
+				aColor_list[i].style.position= 'absolute';
+				aColor_list[i].style.left=0;
+				aColor_list[i].style.top=0;
+				aColor_list[i].style.opacity=1;
+				aColor_list[i].style.background=arrColor[i];
+				(function(index){
+					aColor_list[index].onclick=function(){
+						gd.strokeStyle = arrColor[index];	
+					}
+					setTimeout(function(){
+						move(aColor_list[index],{left:aPos[index].left,top:aPos[index].top,opacity:1},{complete:function(){
+						oBtn.onclick=function(){
+							for(var i=0;i<aColor_list.length;i++){
+								(function(index){
+									setTimeout(function(){
+										move(aColor_list[index],{left:0,top:0,opacity:0},{complete:function(){
+										bOk=false;	
+										move(oColor,{opacity:0});
+										showColor();
+				}});
+									},i*100);
+								})(i);
+							}
+						};
+								
+					}});
+					},i*100);
+				})(i);
+			}
+		};
+	}
+	showColor();
+	
+};
+</script>
+</head>
+
+<body>
+	<div class="draw_box">
+        <canvas id="c1" width="800" height="600">
+            <strong>您的浏览器版本过低，请尽快升级。呵呵。</strong>
+        </canvas>
+        <div class="tool">
+        	<b><img src="img/draw_1.png"></b>
+        	<b><img src="img/draw_2.png"></b>
+        	<b><img src="img/draw_3.png"></b>
+        	<b><img src="img/draw_4.png"></b>
+        	<b><img src="img/draw_5.png"></b>
+            <div class="color">
+            	<em><img src="img/draw_6.png"></em>
+            	<span>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
