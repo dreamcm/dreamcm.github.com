@@ -1,0 +1,124 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,html{height:100%;overflow:hidden;}
+/*banner*/
+.banner_bg{height:100%;min-width:960px;background:url(../images/pin_01.jpg) center 0 no-repeat; overflow:hidden;background-size:cover;}
+.banner{background:#000;position:relative;
+-webkit-transform-style:preserve-3d;-webkit-transform:perspective(800px) translateY(60px) rotateY(0deg) scale(5,5);
+-moz-transform-style:preserve-3d;-moz-transform:perspective(800px) translateY(60px) rotateY(0deg) scale(5,5);
+-ms-transform-style:preserve-3d;-moz-transform:perspective(800px) translateY(60px) rotateY(0deg) scale(5,5);
+transform-style:preserve-3d;-moz-transform:perspective(800px) translateY(60px) rotateY(0deg) scale(5,5);}
+.banner>div{width:100%;height:550px;background:#000;position:absolute;top:0;left:0;overflow:hidden;}
+.banner .begin{-webkit-transform:translateZ(3px);
+-moz-transform:translateZ(3px);
+-ms-transform:translateZ(3px);
+transform:translateZ(3px);
+background:#000;}
+.banner .begin_left{ background:#0CF;width:3px;height:550px;opacity:0.7;-webkit-transform: translate(calc(50% + 960px),0) rotateY(90deg);
+-moz-transform: translate(calc(50% + 960px),0) rotateY(90deg);
+-ms-transform: translate(calc(50% + 960px),0) rotateY(90deg);
+transform: translate(calc(50% + 960px),0) rotateY(90deg);}
+.banner .begin_right{ background:#0CF;  width:3px;height:550px;opacity:0.7;-webkit-transform: translate(calc(-50% - 0px),0) rotateY(-90deg);
+-moz-transform: translate(calc(-50% - 0px),0) rotateY(-90deg);
+-ms-transform: translate(calc(-50% - 0px),0) rotateY(-90deg);
+transform: translate(calc(-50% - 0px),0) rotateY(-90deg);}
+.banner .begin_top{ background:#0CF;  width:100%;height:3px;opacity:0.7;-webkit-transform: translate(0,-50%) rotateX(-90deg);
+-moz-transform: translate(0,-50%) rotateX(-90deg);
+-ms-transform: translate(0,-50%) rotateX(-90deg);
+transform: translate(0,-50%) rotateX(-90deg);}
+
+.banner .begin_bottom{ background:#0CF; width:100%;height:3px; -webkit-transform: translate(0,50%) rotateX(90deg); -moz-transform: translate(0,50%) rotateX(90deg); -ms-transform: translate(0,50%) rotateX(90deg); transform: translate(0,50%) rotateX(90deg);opacity:0.7;}
+
+.begin_con{width:500px;height:200px;background:url(../images/xindiantu.png) no-repeat;background-size:50%;position:absolute;top:100px;left:300px;}
+
+.begin_mask{width:500px;height:200px;background:#000;position:absolute;top:100px;left:150px;}
+
+.banner_bg .con1{width:550px;height:550px;position:absolute;background:url(../images/ziliao2.png) no-repeat;opacity:0;background-size:100%;
+-webkit-transform-style:preserve-3d;-webkit-transform-origin:left;-webkit-transform:perspective(800px) translateX(1000px) translateY(300px) rotateY(-10deg) rotateX(70deg) translateZ(1px) scale(0.5,0.5);
+-moz-transform-style:preserve-3d;-moz-transform-origin:left;-moz-transform:perspective(800px) translateX(1000px) translateY(300px) rotateY(-10deg) rotateX(70deg) translateZ(1px) scale(0.5,0.5);
+-ms-transform-style:preserve-3d;-ms-transform-origin:left;-ms-transform:perspective(800px) translateX(1000px) translateY(300px) rotateY(-10deg) rotateX(70deg) translateZ(1px) scale(0.5,0.5);
+transform-style:preserve-3d;transform-origin:left;transform:perspective(800px) translateX(1000px) translateY(300px) rotateY(-10deg) rotateX(70deg) translateZ(1px) scale(0.5,0.5);}
+
+.banner_bg .con2{width:550px;height:550px; position:absolute;background:url(../images/ziliao2.png) no-repeat;background-size:100%;
+-webkit-transform-style:preserve-3d;-webkit-transform-origin:left;opacity:0;-webkit-transform:perspective(800px) translateX(1000px) translateY(300px) rotateY(-20deg) rotateX(70deg) translateZ(1px) scale(0.5,0.5);
+-moz-transform-style:preserve-3d;-moz-transform-origin:left;opacity:0;-moz-transform:perspective(800px) translateX(1000px) translateY(300px) rotateY(-20deg) rotateX(70deg) translateZ(1px) scale(0.5,0.5);
+-ms-transform-style:preserve-3d;-ms-transform-origin:left;opacity:0;-ms-transform:perspective(800px) translateX(1000px) translateY(300px) rotateY(-20deg) rotateX(70deg) translateZ(1px) scale(0.5,0.5);
+transform-style:preserve-3d;-webkit-transform-origin:left;opacity:0;-webkit-transform:perspective(800px) translateX(1000px) translateY(300px) rotateY(-20deg) rotateX(70deg) translateZ(1px) scale(0.5,0.5);}
+
+.banner_bg .con1:hover,.banner_bg .con2:hover{background:url(../images/ziliao3.png) no-repeat;background-size:100%;}
+
+.banner_bg .banner .begin_back{opacity:0;width:calc(100% - 200px);height:350px;background-size:100%;border:1px solid #849EAC;padding:100px;
+-webkit-transform:translateZ(-1px);background:-webkit-linear-gradient(#000,#06C);-webkit-transform:scale(-1,1);
+-moz-transform:translateZ(-1px);background:-moz-linear-gradient(#000,#06C);-moz-transform:scale(-1,1);
+-ms-transform:translateZ(-1px);background:-ms-linear-gradient(#000,#06C);-ms-transform:scale(-1,1);
+transform:translateZ(-1px);background:linear-gradient(#000,#06C);transform:scale(-1,1);}
+
+.banner .begin_back b{ opacity:0;color:#6FF;font:30px 微软雅黑;line-height:50px;margin-left:3px; text-shadow: 1px 1px 1px #FFF; color:rgba(0,255,255,1);}
+/*con_bg*/
+
+.re_btn{width:139px;height:65px;background:url(../images/return.png) no-repeat;background-size:100%;position:absolute;
+-webkit-transform:translateX(-150px) translateY(100px);
+-moz-transform:translateX(-150px) translateY(100px);
+-ms-transform:translateX(-150px) translateY(100px);
+transform:translateX(-150px) translateY(100px);}
+.re_btn:hover{background-image:url(../images/return2.png);}
+.con h3{position:absolute;top:0;left:0;margin-left:100px;margin-top:60px;color:#0FF;}
+.con img{position:absolute;top:0;left:0;width:78px;height:80px;display:block;margin-left:85px;margin-top:105px;background-size:cover;-webkit-transition:1s all ease;
+-moz-transition:1s all ease;-ms-transition:1s all ease;transition:1s all ease;}
+
+.con a{position:absolute;bottom:0;left:0;margin-left:240px;margin-bottom:115px;font-weight:bold;color:#fff;font:28px 微软雅黑;opacity:0.8;}
+
+.con_bg{background:url(../images/pin5.jpg) center 0 no-repeat;height:100%;min-width:960px; overflow:hidden;background-size:cover;}
+.work{width:960px;height:100%;margin:20px auto;position:relative;background:url(../images/user.png) no-repeat;background-size:100%;}
+.con_bg .work input{width:420px;height:66px;background:url(../images/bottom.png) no-repeat;position:absolute;bottom:30px;left:50%;margin-left:-210px;border:none;color:#fff;font:26px '微软雅黑'}
+.con_bg .work input:active{background-image:url(../images/bottom2.png);bottom:35px;}
+.con_bg .work div{margin:0 auto;width:760px;height:500px;padding:20px;}
+.con_bg .work a{background:#fff;float:left;opacity:0;width:150px;height:150px;margin:15px;overflow:hidden;position:relative;font-size:0;overflow:hidden;border-radius:5px;box-shadow: 1px 1px 6px #1B41EC;}
+.con_bg .work a:before{content:'';width:700px;height:700px;border:500px #0C0000 solid;border-radius:50%;position:absolute;left:50%;top:50%;opacity:0.4;
+-webkit-transform:translate(-50%,-50%);-webkit-transition:all 0.5s linear;
+-moz-transform:translate(-50%,-50%);-moz-transition:all 0.5s linear;
+-ms-transform:translate(-50%,-50%);-ms-transition:all 0.5s linear;
+transform:translate(-50%,-50%);transition:all 0.5s linear;}
+.con_bg .work a:hover:before{width:0;height:0;}
+.con_bg .work a:after{content:'view all work';font:24px/24px arial;position:absolute;left:50%;top:50%;width:100%;text-align:center;color:#fff;opacity:0;
+-webkit-transform:translate(-50%,-50%) perspective(600px) rotateY(180deg) scale(5);-webkit-transition:all 1s linear;
+-moz-transform:translate(-50%,-50%) perspective(600px) rotateY(180deg) scale(5);-moz-transition:all 1s linear;
+-ms-transform:translate(-50%,-50%) perspective(600px) rotateY(180deg) scale(5);-ms-transition:all 1s linear;
+transform:translate(-50%,-50%) perspective(600px) rotateY(180deg) scale(5);transition:all 1s linear;}
+.con_bg .work a:hover:after{position:absolute;left:50%;top:50%;opacity:1;
+-webkit-transform:translate(-50%,-50%) perspective(600px) rotateY(360deg) scale(1);
+-moz-transform:translate(-50%,-50%) perspective(600px) rotateY(360deg) scale(1);
+-ms-transform:translate(-50%,-50%) perspective(600px) rotateY(360deg) scale(1);
+transform:translate(-50%,-50%) perspective(600px) rotateY(360deg) scale(1);}
+.work a img{width:100%;height:100%;background-size:cover;}
+/*me*/
+.chat_bg{min-width:960px;background:url(../images/pin_03.jpg) no-repeat;background-size:cover;height:100%;}
+
+.recom .me{width:960px;height:100%;
+-webkit-transform-style:preserve-3d;
+-moz-transform-style:preserve-3d;
+-ms-transform-style:preserve-3d;
+transform-style:preserve-3d;}
+
+.me .clik{width:123px;height:71px;background:url(../images/userbg_clik.png) no-repeat;display:inline-block;color:#fff;text-align:center;line-height:71px;
+-webkit-transform-style:preserve-3d;-webkit-transform :perspective(800px) translateY(60px) translateZ(1px) rotateY(0deg);
+-moz-transform-style:preserve-3d;-moz-transform :perspective(800px) translateY(60px) translateZ(1px) rotateY(0deg);
+-ms-transform-style:preserve-3d;-ms-transform :perspective(800px) translateY(60px) translateZ(1px) rotateY(0deg);
+transform-style:preserve-3d;transform :perspective(800px) translateY(60px) translateZ(1px) rotateY(0deg);}
+.recom{width:960px;height:100%;margin:0 auto;}
+.recom .recom_name{padding:20px 50px;width:150px;height:435px;background:url(../images/me_cord.png) no-repeat;color:#fff;text-align:center;}
+.recom_name h5{height:50px;margin:20px;font-size:18px;}
+.recom_name div{line-height:50px;font-size:22px;
+-webkit-transform :perspective(800px) translateX(0px) scale(.5,.5);-webkit-transition:1s all ease;
+-moz-transform :perspective(800px) translateX(0px) scale(.5,.5);-moz-transition:1s all ease;
+-ms-transform :perspective(800px) translateX(0px) scale(.5,.5);-ms-transition:1s all ease;
+transform :perspective(800px) translateX(0px) scale(.5,.5);transition:1s all ease;}
+.recom_name div:hover{-webkit-transform :perspective(800px) translateX(0px) scale(1,1);
+-moz-transform :perspective(800px) translateX(0px) scale(1,1);
+-ms-transform :perspective(800px) translateX(0px) scale(1,1);
+transform :perspective(800px) translateX(0px) scale(1,1);}
+.recom_name span{width:150px;height:1px;border-bottom:1px dashed #6FF;display:block;}
+.recom .script{width:960px;height:100%;margin-bottom:30px;}
+
+#back_home img{width:50px;height:50px;position:absolute;top:10px;left:10px;}
