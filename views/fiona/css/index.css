@@ -11,15 +11,15 @@ html,body{width:100%;height:100%;}
     100%{transform: rotate(360deg)}
 }
 .wrap{height:100%;}
-.page-2-1{background: url(../images/rain_bj1.png) no-repeat left top; background-size: contain}
+.page-2-1{background: url(../images/fiona4.jpg) no-repeat left top; background-size: cover}
 .page-2-1 .img1{width: 24.4%;left: 23.8%;top:9%;}
 .page-2-1 .img2{width: 100%;top: 4.5%}
 
-.page-1-1{background: url(../images/page2_bj.png) no-repeat left top; background-size: contain}
+.page-1-1{background: url(../images/fiona7.jpg) no-repeat left top; background-size: cover}
 .page-1-1 .img2_1{width: 62.13%;left: 19.06%;top:48.35%;}
 .page-1-1 .img2_2{width: 50.4%;left: 26.06%;top: 70.225%}
 
-.page-3-1{background: url(../images/rain3_3bj.png) no-repeat left top; background-size: contain}
+.page-3-1{background: url(../images/rain3_3bj.png) no-repeat left top; background-size: cover}
 .page-3-1 .img3_1{width: 23.2%;left: 14%;top:10.52%;}
 .page-3-1 .img3_2{width: 23.73%;left: 38.4%;top: 14.135%}
 .page-3-1 .img3_3{width: 23.2%;left: 62.93%;top: 6.91%}
@@ -27,11 +27,11 @@ html,body{width:100%;height:100%;}
 .page-3-1 .img3_5{width: 100%;top: 57.21%}
 .page-3-1 .img3_6{width: 19.2%;left: 58.53%;top: 50.827%}
 
-.page-4-1{background: url(../images/page4_bj.png) no-repeat left top; background-size: contain}
+.page-4-1{background: url(../images/page4_bj.png) no-repeat left top; background-size: cover}
 .page-4-1 .img4_1{width: 63.33%;left: 18.13%;top:9.3%;}
 .page-4-1 .img4_2{width: 72.26%;left: 10%;top: 9.17%}
-.page-4-1 .img4_3{width: 30.13%;left: 13.3%;top: 30.827%}
-.page-4-1 .img4_4{width: 30.13%;left: 56.53%;top: 30.827%}
+.page-4-1 .img4_3{width: 30.13%;left: 13.3%;top: 28.827%}
+.page-4-1 .img4_4{width: 30.13%;left: 56.53%;top: 28.827%}
 .page-4-1 .img4_5{width: 30.13%;left: 13.3%;top: 62.706%}
 .page-4-1 .img4_6{width: 30.13%;left: 56.53%;top: 62.706%}
 .hide{display: none;}
